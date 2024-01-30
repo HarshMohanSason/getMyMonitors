@@ -29,37 +29,57 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app); //get the database from firebase
 
-// Firebase and other setup code here
-
 // Function to fetch data from Firestore and update the table body
-async function fetchDataAndPopulateTable() {
-    const sourceWebsitesCollection = collection(db, 'SourceWebsites');
-    const querySnapshot = await getDocs(sourceWebsitesCollection);
+async function fetchDataforTable() {
+      // Check if the data is already in local storage
+      const cachedData = localStorage.getItem('firebaseData');
 
-    const tableBody = document.getElementById('tableBody');
-    tableBody.innerHTML = ''; // Clear existing rows
+      if (cachedData) {
+          // check If cached data exists so we can populate the table using it
+          populateTable(JSON.parse(cachedData));
+      }
+      else {
+          // If no cached data exists, we fetch from firebase
+          const sourceWebsitesCollection = collection(db, 'SourceWebsites');
+          const querySnapshot = await getDocs(sourceWebsitesCollection);
 
-    querySnapshot.forEach(doc => {
-        const data = doc.data();
+          const data = [];
 
-        // Create a new row and populate cells
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>₹${data.Price}</td>
-            <td>${data.Brand}</td>
-            <td>${data.MonitorType}</td>
-            <td>${data.Condition}</td>
-            <td>${data.Category}</td>
-            <td>${data.RefreshRate}</td>
-            <td>${data.ScreenShape}</td>
-            <td>${data.HDFormat}</td>
-            <td>${data.Size}</td>
-            <td><a href="${data.Link}" target="_blank">LinktoBuy</a></td>
-        `;
-        // Append the row to the table body
-        tableBody.appendChild(row);
-    });
+          querySnapshot.forEach(doc => {
+              data.push(doc.data());
+          });
+          // Update the table body with the fetched data
+          populateTable(data);
+
+          // Cache the fetched data in local storage
+          localStorage.setItem('firebaseData', JSON.stringify(data));
+      }
 }
 
+ function populateTable(tabledata)
+{
+  const tableBody = document.getElementById('tableBody');
+  tableBody.innerHTML = ''; // Clear existing rows
+
+  tabledata.forEach(data =>{
+
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td>₹${data.Price}</td>
+        <td>${data.Brand}</td>
+        <td>${data.MonitorType}</td>
+        <td>${data.Condition}</td>
+        <td>${data.Category}</td>
+        <td>${data.RefreshRate}</td>
+        <td>${data.ScreenShape}</td>
+        <td>${data.HDFormat}</td>
+        <td>${data.Size}</td>
+        <td><a href="${data.Link}" target="_blank">LinktoBuy</a></td>
+    `;
+    // Append the row to the table body
+    tableBody.appendChild(row);
+
+  });
+}
 // Call the function to fetch data and populate the table
-fetchDataAndPopulateTable();
+fetchDataforTable();
