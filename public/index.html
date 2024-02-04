@@ -40,6 +40,7 @@
 
       #website-Info {
         display: block;
+        margin-top: 20px;
         text-align: center;
       }
 
@@ -106,9 +107,7 @@
   <body>
     <h1>Get my Monitor</h1>
     <div class="container">
-
       <div id="Filters">
-
         <fieldset class="priceFiltering" id="Price">
           <legend>Price</legend>
           <label id="minPricebox" for="minPrice">Min:</label>
@@ -116,198 +115,61 @@
           <label id="maxPricebox" for="maxPrice">Max:</label>
           <input type="number" size="8" id="maxPrice" name="maxPrice" placeholder="₹">
         </fieldset>
-
-        <fieldset class="filterEverything" id="Brands">
-          <legend>Brands</legend>
+        <!--    <fieldset class="filterEverything" id="Brands"><legend>Brands</legend><label><input type="checkbox" name="brand" value="ZERBONICS" checked=""> ZERBONICS </label></br><label><input type="checkbox" name="brand" value="Acer" checked=""> Acer </label></br><label><input type="checkbox" name="brand" value="SAMSUNG" checked=""> Samsung </label></br><label><input type="checkbox" name="brand" value="LG" checked=""> LG </label></br><label><input type="checkbox" name="brand" value="Sceptre" checked=""> Sceptre </label></br><label><input type="checkbox" name="brand" value="ASUS" checked=""> ASUS </label></br><label><input type="checkbox" name="brand" value="Dell" checked=""> Dell </label></br><label><input type="checkbox" name="brand" value="HP" checked=""> HP </label></br><label><input type="checkbox" name="brand" value="KOORUI" checked=""> KOORUI </label></br><label><input type="checkbox" name="brand" value="AOC" checked=""> AOC </label></br><label><input type="checkbox" name="brand" value="msi" checked=""> MSI </label></br><label><input type="checkbox" name="brand" value="ViewSonic" checked=""> ViewSonic </label></br><label><input type="checkbox" name="brand" value="GIGABYTE" checked=""> GIGABYTE </label></br><label><input type="checkbox" name="brand" value="BenQ" checked=""> BenQ </label></br><label><input type="checkbox" name="brand" value="Lenovo" checked=""> Lenovo </label></br><label><input type="checkbox" name="brand" value="INNOCN" checked=""> INNOCN </label></br><label><input type="checkbox" name="brand" value="Lapcare" checked=""> Lapcare </label></br><label><input type="checkbox" name="brand" value="InnoView" checked=""> InnoView </label></br><label><input type="checkbox" name="brand" value="Ergotron" checked=""> Ergotron </label></br><label><input type="checkbox" name="brand" value="Gadget Wagon" checked=""> Gadget Wagon </label></br><label><input type="checkbox" name="brand" value="Zebion" checked=""> Zebion </label></br><label><input type="checkbox" name="brand" value="HUANUO" checked=""> HUANUO </label></br><label><input type="checkbox" name="brand" value="CRUA" checked=""> CRUA </label></br><label><input type="checkbox" name="brand" value="Z Z-EDGE" checked=""> Z Z-EDGE </label></br><label><input type="checkbox" name="brand" value="Viewedge" checked=""> Viewedge </label></br><label><input type="checkbox" name="brand" value="Fellowes" checked=""> Fellowes </label></br><label><input type="checkbox" name="brand" value="TJICHIHEAT" checked=""> TJICHIHEAT </label></br><label><input type="checkbox" name="brand" value="Norcent" checked=""> Norcent </label></br><label><input type="checkbox" name="brand" value="Deco Gear" checked=""> Deco Gear </label></br><label><input type="checkbox" name="brand" value="GTek" checked=""> GTek </label></br><label><input type="checkbox" name="brand" value="YEYIAN" checked=""> YEYIAN </label></br><label><input type="checkbox" name="brand" value="KTC" checked=""> KTC </label></br><label><input type="checkbox" name="brand" value="cocopar" checked=""> cocopar </label></br><label><input type="checkbox" name="brand" value="INFIEVO" checked=""> INFIEVO </label></br><label><input type="checkbox" name="brand" value="Comp Bind Technology" checked=""> Comp Bind Technology </label></br><label><input type="checkbox" name="brand" value="UPERFECT" checked=""> UPERFECT </label></br><label><input type="checkbox" name="brand" value="Gawfolk" checked=""> Gawfolk </label></br><label><input type="checkbox" name="brand" value="KYY" checked=""> KYY </label></br></fieldset><fieldset class="filterEverything" id="Condition"><legend>Condition</legend><label><input type="checkbox" data-condition="New" checked=""> New </label></br><label><input type="checkbox" data-condition="Used" checked=""> Used </label></br></fieldset><fieldset class="filterEverything" id="DisplayType"><legend>Display Type</legend><input type="checkbox" data-condition="OLED" checked=""> OLED <label for="OLED"></label><br /><input type="checkbox" data-condition="QLED" checked=""> QLED <label for="QLED"></label><br /><input type="checkbox" data-condition="CRT" checked=""> CRT <label for="CRT"></label><br /><input type="checkbox" data-condition="LCD" checked=""> LCD <label for="LCD"></label><br /><input type="checkbox" data-condition="LED" checked=""> LED <label for="LED"></label><br /></fieldset>
+      -->
+        <fieldset class="filterEverything" id="InbuiltSpeakers">
+          <legend>Inbuilt Speakers</legend>
           <label>
-            <input type="checkbox" name="brand" value="ZERBONICS" checked=""> ZERBONICS </label>
+            <input name="inBuiltSpeakers" type="checkbox" data-condition="Yes" checked=""> Yes </label>
           </br>
           <label>
-            <input type="checkbox" name="brand" value="Acer" checked=""> Acer </label>
+            <input name="inBuiltSpeakers" type="checkbox" data-condition="No" checked=""> No </label>
           </br>
-          <label>
-            <input type="checkbox" name="brand" value="SAMSUNG" checked=""> Samsung </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="LG" checked=""> LG </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="Sceptre" checked=""> Sceptre </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="ASUS" checked=""> ASUS </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="Dell" checked=""> Dell </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="HP" checked=""> HP </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="KOORUI" checked=""> KOORUI </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="AOC" checked=""> AOC </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="msi" checked=""> MSI </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="ViewSonic" checked=""> ViewSonic </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="GIGABYTE" checked=""> GIGABYTE </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="BenQ" checked=""> BenQ </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="Lenovo" checked=""> Lenovo </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="INNOCN" checked=""> INNOCN </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="Lapcare" checked=""> Lapcare </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="InnoView" checked=""> InnoView </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="Ergotron" checked=""> Ergotron </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="Gadget Wagon" checked=""> Gadget Wagon </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="Zebion" checked=""> Zebion </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="HUANUO" checked=""> HUANUO </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="CRUA" checked=""> CRUA </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="Z Z-EDGE" checked=""> Z Z-EDGE </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="Viewedge" checked=""> Viewedge </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="Fellowes" checked=""> Fellowes </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="TJICHIHEAT" checked=""> TJICHIHEAT </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="Norcent" checked=""> Norcent </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="Deco Gear" checked=""> Deco Gear </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="GTek" checked=""> GTek </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="YEYIAN" checked=""> YEYIAN </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="KTC" checked=""> KTC </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="cocopar" checked=""> cocopar </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="INFIEVO" checked=""> INFIEVO </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="Comp Bind Technology" checked=""> Comp Bind Technology </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="UPERFECT" checked=""> UPERFECT </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="Gawfolk" checked=""> Gawfolk </label>
-          </br>
-          <label>
-            <input type="checkbox" name="brand" value="KYY" checked=""> KYY </label>
-          </br>
-        </fieldset>
-        <fieldset class="filterEverything" id="Condition">
-          <legend>Condition</legend>
-          <label>
-            <input type="checkbox" data-condition="New" checked=""> New </label></br>
-          <label>
-            <input type="checkbox" data-condition="Used" checked=""> Used </label></br>
-        </fieldset>
-        <fieldset class="filterEverything" id="DisplayType">
-          <legend>Display Type</legend>
-          <input type="checkbox" data-condition="OLED" checked=""> OLED <label for="OLED"></label>
-          <br />
-          <input type="checkbox" data-condition="QLED" checked=""> QLED <label for="QLED"></label>
-          <br />
-          <input type="checkbox" data-condition="CRT" checked=""> CRT <label for="CRT"></label>
-          <br />
-          <input type="checkbox" data-condition="LCD" checked=""> LCD <label for="LCD"></label>
-          <br />
-          <input type="checkbox" data-condition="LED" checked=""> LED <label for="LED"></label>
-          <br />
         </fieldset>
         <fieldset class="filterEverything" id="RefreshRate">
           <legend>Refresh Rate</legend>
           <label>
-            <input type="checkbox" data-condition="240Hz" checked=""> 240Hz </label>
+            <input name="refreshRate" type="checkbox" data-condition="240Hz" checked=""> 240Hz </label>
           </br>
           <label>
-            <input type="checkbox" data-condition="165Hz" checked=""> 165Hz </label>
+            <input name="refreshRate" type="checkbox" data-condition="165Hz" checked=""> 165Hz </label>
           </br>
           <label>
-            <input type="checkbox" data-condition="160Hz" checked=""> 160Hz </label>
+            <input name="refreshRate" type="checkbox" data-condition="160Hz" checked=""> 160Hz </label>
           </br>
           <label>
-            <input type="checkbox" data-condition="144Hz" checked=""> 144Hz </label>
+            <input name="refreshRate" type="checkbox" data-condition="144Hz" checked=""> 144Hz </label>
           </br>
           <label>
-            <input type="checkbox" data-condition="120Hz" checked=""> 120Hz </label>
+            <input name="refreshRate" type="checkbox" data-condition="120Hz" checked=""> 120Hz </label>
           </br>
           <label>
-            <input type="checkbox" data-condition="100Hz" checked=""> 100Hz </label>
+            <input name="refreshRate" type="checkbox" data-condition="100Hz" checked=""> 100Hz </label>
           </br>
           <label>
-            <input type="checkbox" data-condition="85Hz" checked=""> 85Hz </label>
+            <input name="refreshRate" type="checkbox" data-condition="85Hz" checked=""> 85Hz </label>
           </br>
           <label>
-            <input type="checkbox" data-condition="75Hz" checked=""> 75Hz </label>
+            <input name="refreshRate" type="checkbox" data-condition="75Hz" checked=""> 75Hz </label>
           </br>
           <label>
-            <input type="checkbox" data-condition="60Hz" checked=""> 60Hz </label>
+            <input name="refreshRate" type="checkbox" data-condition="60Hz" checked=""> 60Hz </label>
           </br>
         </fieldset>
-        <fieldset class="filterEverything" id="Category">
-          <legend>Category</legend>
-          <input type="checkbox" data-condition="Business" checked=""> Business <label></label>
-          <br />
-          <input type="checkbox" data-condition="Desktop" checked=""> Desktop <label></label>
-          <br />
-          <input type="checkbox" data-condition="Gaming" checked=""> Gaming <label></label>
-          <br />
-          <input type="checkbox" data-condition="Photo Video Editing" checked=""> Photo-Video Editing <label></label>
-          <br />
-          <input type="checkbox" data-condition="Surveillance" checked=""> Surveillance <label></label>
-          <br />
-        </fieldset>
+        <!--
+        <fieldset class="filterEverything" id="Category"><legend>Category</legend><input type="checkbox" data-condition="Business" checked=""> Business <label></label><br /><input type="checkbox" data-condition="Desktop" checked=""> Desktop <label></label><br /><input type="checkbox" data-condition="Gaming" checked=""> Gaming <label></label><br /><input type="checkbox" data-condition="Photo Video Editing" checked=""> Photo-Video Editing <label></label><br /><input type="checkbox" data-condition="Surveillance" checked=""> Surveillance <label></label><br /></fieldset>
+              -->
         <fieldset class="filterEverything" id="ScreenSize">
           <legend>Screen Size</legend>
-          <input type="checkbox" data-condition=">=13.9" checked=""> 13.9 >= <label></label>
+          <input name="screenSize" type="checkbox" data-condition="13.9 " checked=""> 13.9 >= <label></label>
           <br />
-          <input type="checkbox" data-condition=">=17.9" checked=""> 17.9 >= <label></label>
+          <input name="screenSize" type="checkbox" data-condition="17.9 " checked=""> 17.9 >= <label></label>
           <br />
-          <input type="checkbox" data-condition=">=21.9" checked=""> 21.9 >= <label></label>
+          <input name="screenSize" type="checkbox" data-condition="21.9 " checked=""> 21.9 >= <label></label>
           <br />
-          <input type="checkbox" data-condition=">=25.9" checked=""> 25.9 >= <label></label>
+          <input name="screenSize" type="checkbox" data-condition="25.9 " checked=""> 25.9 >= <label></label>
           <br />
-          <input type="checkbox" data-condition=">26.0" checked=""> 26.0 >= <label></label>
+          <input name="screenSize" type="checkbox" data-condition="26.0 " checked=""> 26.0 >= <label></label>
           <br />
         </fieldset>
       </div>
@@ -316,7 +178,9 @@
           <tr>
             <th>Price</th>
             <th>Brand</th>
-            <th>Monitor Type</th>
+            <th>Display Type</th>
+            <th>Inbuilt Speakers</th>
+            <th>Sync</th>
             <th>Condition</th>
             <th>Category</th>
             <th>Refresh Rate</th>
