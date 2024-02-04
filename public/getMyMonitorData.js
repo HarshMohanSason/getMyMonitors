@@ -1,7 +1,7 @@
 
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
 import {getAnalytics} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
-import {getFirestore, collection, getDocs} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+import {getDatabase, ref, onValue, get} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
 
 
 const firebaseConfig = {
@@ -26,81 +26,181 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const db = getFirestore(app); //get the database from firebase
-let globalTableData = []; // global data
+const db = getDatabase(app);
+let timeoutId;
+let globalTableData = [];
 
-// Function to fetch data from Firestore and update the table body
+const filters = {  //Object to store screenSize, inBuiltSpeakers and refreshRate hashmaps
+  screenSize: {},
+  inBuiltSpeakers: {},
+  refreshRate: {}
+};
+
 async function fetchDataforTable() {
-    // Check if the data is already in local storage
-    const cachedData = localStorage.getItem('firebaseData');
+    try {
 
-    if (cachedData) {
+        let cachedData = localStorage.getItem('firebaseData');
+        let lastCacheTimestamp = localStorage.getItem('cacheTimestamp');
 
-        globalTableData = JSON.parse(cachedData);
-        populateTable();
+        if (cachedData && lastCacheTimestamp) {
+            const currentTime = new Date().getTime();
+            const oneWeekInMillis =  24 * 60 * 60 * 1000;
 
-    } else {
-        // If no cached data exists, we fetch from firebase
-        const sourceWebsitesCollection = collection(db, 'SourceWebsites');
-        const querySnapshot = await getDocs(sourceWebsitesCollection);
+            if (currentTime - parseInt(lastCacheTimestamp) < oneWeekInMillis) {
+                globalTableData = JSON.parse(cachedData);
+                populateTable();
+                return;
+            }
+        }
 
-        querySnapshot.forEach(doc => {
-            globalTableData.push(doc.data());
-        });
-        // Update the table body with the fetched data
-        populateTable();
-        // Cache the fetched data in local storage
-        localStorage.setItem('firebaseData', JSON.stringify(globalTableData));
+        const snapshot = await get(ref(db));
+
+        if (snapshot.exists()) {
+            const data = snapshot.val();
+            globalTableData = Object.values(data);
+            localStorage.setItem('firebaseData', JSON.stringify(globalTableData));
+            localStorage.setItem('cacheTimestamp', new Date().getTime().toString());
+            populateTable();
+        }
+        else {
+            console.log("No data available right now");
+        }
+    } catch (error) {
+        console.error("Error fetching data:", error);
     }
 }
+
 
 function populateTable(minPrice = 0, maxPrice = null) {
 
     const tableBody = document.getElementById('tableBody');
-    tableBody.innerHTML = ''; // Clear existing rows
+    tableBody.innerHTML = ''; // Clearing existing rows
 
-    globalTableData.forEach(data => {
+    const trueInBuiltSpeakersValues = getTrueValues('inBuiltSpeakers');
+    const trueRefreshRateValues = getTrueValues('refreshRate');
+
+    const filteredData = globalTableData.filter(data => {
+
+      const inBuiltSpeakersFilter = trueInBuiltSpeakersValues.includes(data.InbuiltSpeakers) || trueInBuiltSpeakersValues.length === 0;
+      const refreshRateFilter = trueRefreshRateValues.includes(data.RefreshRate) || trueRefreshRateValues.length === 0;
+      const screenSizeFilter = screenSizeComparator(data.Size, 'screenSize') || 0;
+
+        return (
+          (minPrice <= data.Price) &&
+          (maxPrice === null || data.Price <= maxPrice) &&
+          inBuiltSpeakersFilter &&
+          refreshRateFilter &&
+          screenSizeFilter
+          );
+
+    }).sort((a, b) => a.Price - b.Price);
+
+    filteredData.forEach(data => {
         const row = document.createElement('tr');
-
-        if (data.Price >= minPrice && (maxPrice === null || data.Price <= maxPrice))  {
-            row.innerHTML = `
-        <td>₹${data.Price}</td>
-        <td>${data.Brand}</td>
-        <td>${data.MonitorType}</td>
-        <td>${data.Condition}</td>
-        <td>${data.Category}</td>
-        <td>${data.RefreshRate}</td>
-        <td>${data.ScreenShape}</td>
-        <td>${data.HDFormat}</td>
-        <td>${data.Size}</td>
-        <td><a href="${data.Link}" target="_blank">LinktoBuy</a></td>`;
-            // Append the row to the table body
-            tableBody.appendChild(row);
-        }
+        row.innerHTML = `
+            <td>₹${data.Price}</td>
+            <td>${data.Brand}</td>
+            <td>${data.MonitorType}</td>
+            <td>${data.InbuiltSpeakers}</td>
+            <td>${data.Sync}</td>
+            <td>${data.Condition}</td>
+            <td>${data.Category}</td>
+            <td>${data.RefreshRate}</td>
+            <td>${data.ScreenShape}</td>
+            <td>${data.HDFormat}</td>
+            <td>${data.Size}</td>
+            <td><a href="${data.Link}" target="_blank">LinktoBuy</a></td>`;
+        tableBody.appendChild(row);
     });
 }
 
 
-//clear the local storage periodically(1 week time)
-function periodicallyClearLocalStorage() {
-    // Clear local storage for your website
-    localStorage.removeItem('firebaseData');
-    // Optionally, you can perform additional cleanup or actions here
-}
-
-setInterval(periodicallyClearLocalStorage, 7 * 24 * 60 * 60 * 1000); // 7 days interval to clear the local storage for each browser for this website
-
-fetchDataforTable(); //fetch the data from the table
+fetchDataforTable();
+getcheckBoxValue('inBuiltSpeakers');
+getcheckBoxValue('refreshRate');
+getSizeBoxValue('screenSize');
 
 
-//to handle the priceInputs
-const priceInputs = document.querySelectorAll('priceFiltering input[type="number"]'); //get the entered value
-priceInputs.forEach(input => {
-    input.addEventListener("keyup", function(event) {
-        // Get the entered value from the input
-        const minPrice = document.getElementById('minPricebox').value; // assuming minPrice ID is used
-        const maxPrice = document.getElementById('maxPricebox').value; // assuming maxPrice ID is used
-        // Call populateTable with the entered value
+const getMinPrice = document.getElementById('minPrice');
+
+getMinPrice.addEventListener('input', (event) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+        const minPrice = parseFloat(event.target.value) || 0;
+        const maxPrice = parseFloat(document.getElementById('maxPrice').value) || null;
         populateTable(minPrice, maxPrice);
-    });
+    }, 2);
 });
+
+
+const getMaxPrice = document.getElementById('maxPrice');
+
+getMaxPrice.addEventListener('input', (event) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+        const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+        const maxPrice = parseFloat(event.target.value) || null;
+        populateTable(minPrice, maxPrice);
+    }, 2);
+});
+
+
+
+function getcheckBoxValue(filterType) {
+
+  var checkboxes = document.querySelectorAll(`input[name="${filterType}"]`);
+
+  checkboxes.forEach((checkbox) => {
+    const labelValue = checkbox.getAttribute('data-condition');
+    checkbox.addEventListener('change', (event) => {
+      filters[filterType][labelValue] = checkbox.checked;
+      populateTable();
+    });
+  });
+}
+
+function getTrueValues(filterType) {
+  const trueValues = [];
+  for (const key in filters[filterType]) {
+    if (filters[filterType][key]) {
+      trueValues.push(key);
+    }
+  }
+  return trueValues;
+}
+
+
+//function to get theSizeBoxValue
+function getSizeBoxValue(filterType)
+{
+  var checkboxes = document.querySelectorAll(`input[name="${filterType}"]`);
+
+  checkboxes.forEach((checkbox) =>
+  {
+    const labelValue = checkbox.getAttribute('data-condition');
+     checkbox.addEventListener('change', (event) => {
+       filters[filterType][labelValue] = checkbox.checked;
+       populateTable();
+     });
+  });
+}
+
+
+function screenSizeComparator(value, filterType) {
+  const numericValue = parseFloat(value); // parse the value into float for comparison
+
+  for (const key in filters[filterType]) {
+    if (filters[filterType][key]) { // if that value for that key is true
+      const filterValue = parseFloat(key) || 0; // Default to 0 if no valid value is specified in the filter
+
+      if (numericValue >= filterValue) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
