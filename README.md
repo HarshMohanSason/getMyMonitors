@@ -8,3 +8,4 @@ The public folder contains all the files for the website. The index.html is the 
 
 Note: If you would like to contribute, please send a pullrequest in a different branch. 
 
+<img width="1423" alt="Screenshot 2024-03-12 at 6 43 11 AM" src="https://github.com/HarshMohanSason/getMyMonitors/assets/80195000/4b556898-9b4f-4202-952b-8fbdf2d261c5">
