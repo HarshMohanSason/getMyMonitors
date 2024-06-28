@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Monitor Prices Comparison from all the websites">
-    <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/getmymonitor-42f46.appspot.com/o/websiteimage.jpg?alt=media&token=3cda1196-eed7-4e27-b8e8-9e16b63034ae" type="image/x-icon">
+    <link rel="icon"
+        href="https://firebasestorage.googleapis.com/v0/b/getmymonitor-42f46.appspot.com/o/websiteimage.jpg?alt=media&token=3cda1196-eed7-4e27-b8e8-9e16b63034ae"
+        type="image/x-icon">
     <meta name="theme-color" content="#FFFFFF">
     <style>
         h1 {
@@ -18,22 +21,25 @@
         }
 
         body {
-            background: -webkit-linear-gradient(left, #c17171 0%, #e3c1c1 50%, #f1e8b5 100%);
+            background: -webkit-linear-gradient(left, #ffffff 0%, #add8e6 50%, #ffffff 100%);
+            background: -moz-linear-gradient(left, #ffffff 0%, #add8e6 50%, #ffffff 100%);
+            background: -o-linear-gradient(left, #ffffff 0%, #add8e6 50%, #ffffff 100%);
+            background: linear-gradient(to right, #ffffff 0%, #add8e6 50%, #ffffff 100%);
+
             margin: 0;
             font-family: Arial, sans-serif;
         }
 
         .container {
-            padding: 10px;
             display: flex;
-            flex-wrap: wrap;
             align-items: flex-start;
             justify-content: center;
+            padding: 10px;
         }
 
         #Filters {
             flex: 1 1 200px;
-            margin-right: 20px;
+            margin-right: 40px;
             max-width: 300px;
         }
 
@@ -80,8 +86,11 @@
 
         @media only screen and (max-width: 600px) {
             .container {
-                flex-direction: column;
-                align-items: center;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: center;
             }
 
             table {
@@ -91,12 +100,14 @@
                 white-space: nowrap;
             }
 
-            th, td {
+            th,
+            td {
                 font-size: 10px;
             }
         }
     </style>
 </head>
+
 <body>
     <h1>Get my Monitor</h1>
     <div class="container">
@@ -206,4 +217,5 @@
     </div>
     <a id="website-Info" href="websiteInfo.html">About the website</a>
 </body>
+
 </html>
