@@ -1,5 +1,6 @@
 # getMyMonitors.in
-This is an open source website to help users find monitor prices easily in India. Link: getmymonitors.in
+This is an open source website to help users find monitor prices easily in India. 
+Link to the site: https://getmymonitor.in/
 
 ## Description and About
 This is an open source website to help users find monitor prices easily in India. Me and my friends struggled to get a good deal for a monitor as there is only so much you can look for online at one place. The website uses firebase to host as well as for the backend to store all the data. Note that we try to keep on adding as much data as we can. If you would like to add a deal you got from somewhere online or you see some wrong prices on the website or some which are not listed there but you know, please send a pull request so we can verify it and add it. 
