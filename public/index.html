@@ -84,13 +84,49 @@
             background-color: #f2f2f2;
         }
 
+        .loading-indicator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 300px;
+            /* Full viewport height to cover the entire screen */
+    
+            /* Full viewport width */
+            position: fixed;
+            /* Position it above other content */
+            top: 1;
+            left: 1;
+            
+            /*
+            /* Adjust height as necessary */
+        }
+
+        .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         @media only screen and (max-width: 600px) {
             .container {
-            padding: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            justify-content: center;
+                padding: 10px;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: flex-start;
+                justify-content: center;
             }
 
             table {
@@ -122,76 +158,79 @@
             <fieldset class="filterEverything" id="InbuiltSpeakers">
                 <legend>Inbuilt Speakers</legend>
                 <label>
-                    <input name="inBuiltSpeakers" type="checkbox" data-condition="Yes" checked=""> Yes
+                    <input name="inBuiltSpeakers" type="checkbox" data-condition="Yes"> Yes
                 </label>
                 </br>
                 <label>
-                    <input name="inBuiltSpeakers" type="checkbox" data-condition="No" checked=""> No
+                    <input name="inBuiltSpeakers" type="checkbox" data-condition="No"> No
                 </label>
                 </br>
             </fieldset>
             <fieldset class="filterEverything" id="RefreshRate">
                 <legend>Refresh Rate</legend>
                 <label>
-                    <input name="refreshRate" type="checkbox" data-condition="240Hz" checked=""> 240Hz
+                    <input name="refreshRate" type="checkbox" data-condition="240Hz"> 240Hz
                 </label>
                 </br>
                 <label>
-                    <input name="refreshRate" type="checkbox" data-condition="165Hz" checked=""> 165Hz
+                    <input name="refreshRate" type="checkbox" data-condition="165Hz"> 165Hz
                 </label>
                 </br>
                 <label>
-                    <input name="refreshRate" type="checkbox" data-condition="160Hz" checked=""> 160Hz
+                    <input name="refreshRate" type="checkbox" data-condition="160Hz"> 160Hz
                 </label>
                 </br>
                 <label>
-                    <input name="refreshRate" type="checkbox" data-condition="144Hz" checked=""> 144Hz
+                    <input name="refreshRate" type="checkbox" data-condition="144Hz"> 144Hz
                 </label>
                 </br>
                 <label>
-                    <input name="refreshRate" type="checkbox" data-condition="120Hz" checked=""> 120Hz
+                    <input name="refreshRate" type="checkbox" data-condition="120Hz"> 120Hz
                 </label>
                 </br>
                 <label>
-                    <input name="refreshRate" type="checkbox" data-condition="100Hz" checked=""> 100Hz
+                    <input name="refreshRate" type="checkbox" data-condition="100Hz"> 100Hz
                 </label>
                 </br>
                 <label>
-                    <input name="refreshRate" type="checkbox" data-condition="85Hz" checked=""> 85Hz
+                    <input name="refreshRate" type="checkbox" data-condition="85Hz"> 85Hz
                 </label>
                 </br>
                 <label>
-                    <input name="refreshRate" type="checkbox" data-condition="75Hz" checked=""> 75Hz
+                    <input name="refreshRate" type="checkbox" data-condition="75Hz"> 75Hz
                 </label>
                 </br>
                 <label>
-                    <input name="refreshRate" type="checkbox" data-condition="60Hz" checked=""> 60Hz
+                    <input name="refreshRate" type="checkbox" data-condition="60Hz"> 60Hz
                 </label>
                 </br>
             </fieldset>
             <fieldset class="filterEverything" id="ScreenSize">
                 <legend>Screen Size</legend>
                 <label>
-                    <input name="screenSize" type="checkbox" data-condition="13.9 " checked=""> 13.9 >=
+                    <input name="screenSize" type="checkbox" data-condition="13.9 "> 13.9 >=
                 </label>
                 <br>
                 <label>
-                    <input name="screenSize" type="checkbox" data-condition="17.9 " checked=""> 17.9 >=
+                    <input name="screenSize" type="checkbox" data-condition="17.9 "> 17.9 >=
                 </label>
                 <br>
                 <label>
-                    <input name="screenSize" type="checkbox" data-condition="21.9 " checked=""> 21.9 >=
+                    <input name="screenSize" type="checkbox" data-condition="21.9 "> 21.9 >=
                 </label>
                 <br>
                 <label>
-                    <input name="screenSize" type="checkbox" data-condition="25.9 " checked=""> 25.9 >=
+                    <input name="screenSize" type="checkbox" data-condition="25.9 "> 25.9 >=
                 </label>
                 <br>
                 <label>
-                    <input name="screenSize" type="checkbox" data-condition="26.0 " checked=""> 26.0 >=
+                    <input name="screenSize" type="checkbox" data-condition="26.0 "> 26.0 >=
                 </label>
                 <br>
             </fieldset>
+        </div>
+        <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+            <div class="spinner"></div>
         </div>
         <table id="monitorTable">
             <thead>

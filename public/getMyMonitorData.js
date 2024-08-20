@@ -38,7 +38,7 @@ const filters = {  //Object to store screenSize, inBuiltSpeakers and refreshRate
 
 async function fetchDataforTable() {
     try {
-
+      document.getElementById('loadingIndicator').style.display = 'block';
         let cachedData = localStorage.getItem('firebaseData');
         let lastCacheTimestamp = localStorage.getItem('cacheTimestamp');
 
@@ -68,6 +68,10 @@ async function fetchDataforTable() {
     } catch (error) {
         console.error("Error fetching data:", error);
     }
+    finally {
+      // Hide the loading indicator once the data is fetched
+      document.getElementById('loadingIndicator').style.display = 'none';
+  }
 }
 
 
