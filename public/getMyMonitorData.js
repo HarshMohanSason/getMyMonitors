@@ -44,9 +44,9 @@ async function fetchDataforTable() {
 
         if (cachedData && lastCacheTimestamp) {
             const currentTime = new Date().getTime();
-            const oneWeekInMillis =  24 * 60 * 60 * 1000;
+            const oneDayInMillis =  24 * 60 * 60 * 1000;
 
-            if (currentTime - parseInt(lastCacheTimestamp) < oneWeekInMillis) {
+            if (currentTime - parseInt(lastCacheTimestamp) < oneDayInMillis) {
                 globalTableData = JSON.parse(cachedData);
                 populateTable();
                 return;
