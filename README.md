@@ -7,9 +7,6 @@ This is an open source website to help users find monitor prices easily in India
 
 The public folder contains all the files for the website. The index.html is the main UI and the firebase configuration is inside the getmonitordata.js.
 
-Note: If you would like to contribute, I have attached the link to the google sheets. Just upload the data there, and I will upload the csv to firebase later.
-
-Link to google sheets: https://docs.google.com/spreadsheets/d/1vICLDc4DTzpSddDrjfndJ9diaHkCyoGJ4OGJFDI3vfk/edit?gid=0#gid=0
 
 
 
