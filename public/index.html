@@ -36,10 +36,25 @@
             justify-content: center;
             padding: 10px;
         }
+
         #Brand label {
-        display: block;
-        margin-bottom: 10px; /* Optional: Adds space between each checkbox */
+            display: block;
+            margin-bottom: 10px;
+            /* Optional: Adds space between each checkbox */
         }
+
+        .price-row {
+            display: block;
+            align-items: center;
+        }
+
+        .priceFiltering {
+            flex-direction: column;
+            display: flex;
+            gap: 5px;
+            /* Adds space between the Min and Max boxes */
+        }
+
 
         #Filters {
             flex: 1 1 200px;
@@ -94,13 +109,13 @@
             align-items: center;
             padding-top: 300px;
             /* Full viewport height to cover the entire screen */
-    
+
             /* Full viewport width */
             position: fixed;
             /* Position it above other content */
             top: 1;
             left: 1;
-            
+
             /*
             /* Adjust height as necessary */
         }
@@ -234,12 +249,12 @@
             </fieldset>
             <fieldset class="filterEverything" id="Condition">
                 <legend>Condition</legend>
-                    <label>
-                        <input name="condition" type="checkbox" data-condition="New"> New
-                    </label>
-                    <label>
-                        <input name="condition" type="checkbox" data-condition="Old"> Old
-                    </label>
+                <label>
+                    <input name="condition" type="checkbox" data-condition="New"> New
+                </label>
+                <label>
+                    <input name="condition" type="checkbox" data-condition="Old"> Old
+                </label>
             </fieldset>
             <fieldset class="filterEverything" id="Brand">
                 <legend>Brand</legend>
