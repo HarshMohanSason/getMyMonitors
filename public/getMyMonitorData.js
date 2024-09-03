@@ -33,7 +33,9 @@ let globalTableData = [];
 const filters = {  //Object to store screenSize, inBuiltSpeakers and refreshRate hashmaps
   screenSize: {},
   inBuiltSpeakers: {},
-  refreshRate: {}
+  refreshRate: {},
+  condition:{},
+  brand:{}
 };
 
 async function fetchDataforTable() {
@@ -82,17 +84,24 @@ function populateTable(minPrice = 0, maxPrice = null) {
 
     const trueInBuiltSpeakersValues = getTrueValues('inBuiltSpeakers');
     const trueRefreshRateValues = getTrueValues('refreshRate');
+    const trueConditionValues = getTrueValues('condition');
+    const trueBrandFilter = getTrueValues('brand');
 
     const filteredData = globalTableData.filter(data => {
 
       const inBuiltSpeakersFilter = trueInBuiltSpeakersValues.includes(data.InbuiltSpeakers) || trueInBuiltSpeakersValues.length === 0;
+      const conditionFilter = trueConditionValues.includes(data.Condition) ||   trueConditionValues.length === 0;
       const refreshRateFilter = trueRefreshRateValues.includes(data.RefreshRate) || trueRefreshRateValues.length === 0;
+      const brandFilter = trueBrandFilter.includes(data.Brand) || trueBrandFilter.length === 0;
       const screenSizeFilter = screenSizeComparator(data.Size, 'screenSize') || 0;
-
-        return (
+        
+    //  console.log(brandFilter);
+      return (
           (minPrice <= data.Price) &&
           (maxPrice === null || data.Price <= maxPrice) &&
           inBuiltSpeakersFilter &&
+          conditionFilter && 
+          brandFilter && 
           refreshRateFilter &&
           screenSizeFilter
           );
@@ -121,6 +130,8 @@ function populateTable(minPrice = 0, maxPrice = null) {
 
 fetchDataforTable();
 getcheckBoxValue('inBuiltSpeakers');
+getcheckBoxValue('brand');
+getcheckBoxValue('condition');
 getcheckBoxValue('refreshRate');
 getSizeBoxValue('screenSize');
 
@@ -149,7 +160,7 @@ getMaxPrice.addEventListener('input', (event) => {
 });
 
 
-
+//This will fill the filters object with the true /false value 
 function getcheckBoxValue(filterType) {
 
   var checkboxes = document.querySelectorAll(`input[name="${filterType}"]`);
@@ -163,6 +174,9 @@ function getcheckBoxValue(filterType) {
   });
 }
 
+
+
+//Function to get the values of the filter. When a checkbox is selected, this will return the array of the filters selected
 function getTrueValues(filterType) {
   const trueValues = [];
   for (const key in filters[filterType]) {
@@ -170,11 +184,11 @@ function getTrueValues(filterType) {
       trueValues.push(key);
     }
   }
+  console.log(trueValues);
   return trueValues;
 }
 
 
-//function to get theSizeBoxValue
 function getSizeBoxValue(filterType)
 {
   var checkboxes = document.querySelectorAll(`input[name="${filterType}"]`);

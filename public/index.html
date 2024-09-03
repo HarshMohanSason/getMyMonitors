@@ -36,6 +36,10 @@
             justify-content: center;
             padding: 10px;
         }
+        #Brand label {
+        display: block;
+        margin-bottom: 10px; /* Optional: Adds space between each checkbox */
+        }
 
         #Filters {
             flex: 1 1 200px;
@@ -227,6 +231,75 @@
                     <input name="screenSize" type="checkbox" data-condition="26.0 "> 26.0 >=
                 </label>
                 <br>
+            </fieldset>
+            <fieldset class="filterEverything" id="Condition">
+                <legend>Condition</legend>
+                    <label>
+                        <input name="condition" type="checkbox" data-condition="New"> New
+                    </label>
+                    <label>
+                        <input name="condition" type="checkbox" data-condition="Old"> Old
+                    </label>
+            </fieldset>
+            <fieldset class="filterEverything" id="Brand">
+                <legend>Brand</legend>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="Consistent"> Consistent
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="Fronttech"> Fronttech
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="Ivoomi"> Ivoomi
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="Zebronics"> Zebronics
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="AOC"> AOC
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="Acer"> Acer
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="LG"> LG
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="Dell"> Dell
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="Samsung"> Samsung
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="MarQ"> MarQ
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="Lenovo"> Lenovo
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="BENQ"> BENQ
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="HP"> HP
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="Asus"> Asus
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="Prechen"> Prechen
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="ViewSonic"> ViewSonic
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="MSI"> MSI
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="Geonix"> Geonix
+                </label>
+                <label>
+                    <input name="brand" type="checkbox" data-condition="Gigabyte"> Gigabyte
+                </label>
             </fieldset>
         </div>
         <div id="loadingIndicator" class="loading-indicator" style="display: none;">
