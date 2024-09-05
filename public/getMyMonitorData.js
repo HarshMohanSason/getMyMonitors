@@ -1,4 +1,3 @@
-
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
 import {getAnalytics} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
 import {getDatabase, ref, onValue, get} from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
@@ -75,9 +74,12 @@ async function fetchDataforTable() {
       document.getElementById('loadingIndicator').style.display = 'none';
   }
 }
+// Global variables for min and max prices
+let minPrice = 0;
+let maxPrice = null;
 
 
-function populateTable(minPrice = 0, maxPrice = null) {
+function populateTable() {
 
     const tableBody = document.getElementById('tableBody');
     tableBody.innerHTML = ''; // Clearing existing rows
@@ -136,28 +138,23 @@ getcheckBoxValue('refreshRate');
 getSizeBoxValue('screenSize');
 
 
-const getMinPrice = document.getElementById('minPrice');
-
-getMinPrice.addEventListener('input', (event) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-        const minPrice = parseFloat(event.target.value) || 0;
-        const maxPrice = parseFloat(document.getElementById('maxPrice').value) || null;
-        populateTable(minPrice, maxPrice);
-    }, 2);
+// Event listeners for price input
+document.getElementById('minPrice').addEventListener('input', (event) => {
+  clearTimeout(timeoutId);
+  timeoutId = setTimeout(() => {
+      minPrice = parseFloat(event.target.value) || 0;
+      populateTable();
+  }, 2);
 });
 
-
-const getMaxPrice = document.getElementById('maxPrice');
-
-getMaxPrice.addEventListener('input', (event) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-        const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
-        const maxPrice = parseFloat(event.target.value) || null;
-        populateTable(minPrice, maxPrice);
-    }, 2);
+document.getElementById('maxPrice').addEventListener('input', (event) => {
+  clearTimeout(timeoutId);
+  timeoutId = setTimeout(() => {
+      maxPrice = parseFloat(event.target.value) || null;
+      populateTable();
+  }, 2);
 });
+
 
 
 //This will fill the filters object with the true /false value 
@@ -184,7 +181,6 @@ function getTrueValues(filterType) {
       trueValues.push(key);
     }
   }
-  console.log(trueValues);
   return trueValues;
 }
 
